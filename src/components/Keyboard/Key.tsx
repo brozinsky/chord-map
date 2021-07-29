@@ -3,15 +3,15 @@ import { AppContext } from '../../contexts/AppContext';
 export interface IAppProps {
     note: string,
     isWhite: boolean,
-    number: number,
+    value: string
 }
 
-const Key = ({ note, isWhite, number }: IAppProps) => {
+const Key = ({ note, isWhite, value }: IAppProps) => {
     const { state } = React.useContext(AppContext);
     const [isActive, setIsActive] = React.useState<boolean>(false);
 
     React.useEffect(() => {
-        if (state.activeNotes.filter(note => note === number).length > 0) {
+        if (state.activeChord.filter(note => note === value).length > 0) {
             setIsActive(true)
             setTimeout(() => {
                 setIsActive(false)
@@ -24,7 +24,7 @@ const Key = ({ note, isWhite, number }: IAppProps) => {
             <button className={`keys__${note}
         ${isWhite ? 'keys__white' : 'keys__black'}
         ${isActive ? 'keys--active' : ''}
-        `}></button>
+        `}>{note}</button>
         </>
     )
 }

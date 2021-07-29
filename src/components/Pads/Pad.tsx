@@ -16,13 +16,13 @@ const chords: { name: string, notes: number[]; }[] = [
     { 'name': 'vii', 'notes': [12, 15, 18] }
 ]
 
-const keys = ['c2', 'cs2', 'd2', 'ds2', 'e2', 'f2', 'fs2', 'g2', 'gs2', 'a2', 'as2', 'b2',
+const keys: string[] = ['c2', 'cs2', 'd2', 'ds2', 'e2', 'f2', 'fs2', 'g2', 'gs2', 'a2', 'as2', 'b2',
     'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a3', 'as3', 'b3']
 
 const Pad = ({ name }: IAppProps) => {
     const [isActive, setIsActive] = React.useState<boolean>(false);
     // const [activeNotes, setActiveNotes] = React.useState<number[]>([]);
-    const { setState } = React.useContext(AppContext);
+    const { state, setState } = React.useContext(AppContext);
     const [rootNote, setRootNote] = React.useState<string>('c');
 
     const msLength = 2000
@@ -55,9 +55,15 @@ const Pad = ({ name }: IAppProps) => {
 
         //create chord array with notes
         const newChord = notesArray.map((note) => {
-            const chordNote = keysRootFirst[note].toString()
+            const chordNote = keysRootFirst[note - 1].toString()
 
             return chordNote
+        })
+        setState(prevState => {
+            return {
+                ...prevState,
+                activeChord: newChord
+            }
         })
         newChord.forEach((note) => {
             return play({ id: note })
@@ -69,8 +75,13 @@ const Pad = ({ name }: IAppProps) => {
             setIsActive(false)
         }, 500);
         const chordNotes = chords.find(chord => chord.name === name)?.notes as number[]
-        setState({ activeNotes: chordNotes })
-        createChord('d', chordNotes)
+        setState(prevState => {
+            return {
+                ...prevState,
+                activeNotes: chordNotes
+            }
+        })
+        createChord(state.rootNote, chordNotes)
         setIsActive(true)
     }
 

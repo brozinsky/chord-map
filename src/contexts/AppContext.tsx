@@ -1,32 +1,17 @@
 import React, { Dispatch, SetStateAction, useState, createContext } from 'react';
-
-// const ActiveNotesCtx = createContext({
-//     activeNotes: [] as number[],
-//     setActiveNotes: (activeNotes: number) => {},
-//   });
-
-// // export const ActiveNotesContext = createContext<number[]>([]);
-
-// export const ActiveNotesProvider: React.FC = ({ children }) => {
-//     // const [activeNotes, setActiveNotes] = useState<number[]>([]);
-
-//     const [activeNotes, setActiveNotes] = useState<number[]>([]);
-
-//     return (
-//         <ActiveNotesCtx.Provider value={{activeNotes, setActiveNotes}}>
-//             {children}
-//         </ActiveNotesCtx.Provider>
-//     );
-// }
-
 export interface IProviderProps {
     children?: any;
 }
 
 type AppContextState = {
-    // isMenuOpen: boolean;
-    // isSideOpen: boolean;
-    activeNotes: number[]
+    activeNotes: number[];
+    activeChord: string[];
+    rootNote: string,
+    keys: Array<{
+        name: string,
+        value: string,
+        isWhite: boolean
+    }>
 }
 
 type AppContextValue = {
@@ -36,15 +21,40 @@ type AppContextValue = {
 };
 
 const appCtxDefaultValue: AppContextValue = {
-    state: { activeNotes: [] },
+    state: {
+        activeNotes: [],
+        activeChord: [],
+        rootNote: 'c',
+        keys: [
+            { name: 'c', value: 'c2', isWhite: true },
+            { name: 'c#', value: 'cs2', isWhite: false },
+            { name: 'd', value: 'd2', isWhite: true },
+            { name: 'd#', value: 'ds2', isWhite: false },
+            { name: 'e', value: 'e2', isWhite: true },
+            { name: 'f', value: 'f2', isWhite: true },
+            { name: 'f#', value: 'fs2', isWhite: false },
+            { name: 'g', value: 'g2', isWhite: true },
+            { name: 'g#', value: 'gs2', isWhite: false },
+            { name: 'a', value: 'a2', isWhite: true },
+            { name: 'a#', value: 'as2', isWhite: false },
+            { name: 'b', value: 'b2', isWhite: true },
+
+            { name: 'c', value: 'c3', isWhite: true },
+            { name: 'c#', value: 'cs3', isWhite: false },
+            { name: 'd', value: 'd3', isWhite: true },
+            { name: 'd#', value: 'ds3', isWhite: false },
+            { name: 'e', value: 'e3', isWhite: true },
+            { name: 'f', value: 'f3', isWhite: true },
+            { name: 'f#', value: 'fs3', isWhite: false },
+            { name: 'g', value: 'g3', isWhite: true },
+            { name: 'g#', value: 'gs3', isWhite: false },
+            { name: 'a', value: 'a3', isWhite: true },
+            { name: 'a#', value: 'as3', isWhite: false },
+            { name: 'b', value: 'b3', isWhite: true },
+        ]
+    },
     setState: state => { } // noop default callback
 };
-
-// const appCtxDefaultValue = {
-//     // state: { isMenuOpen: false, isSideOpen: false },
-//     state: { activeNotes: [] },
-//     setState: (state: AppContextState) => { } // noop default callback
-// };
 
 export const AppContext = createContext(appCtxDefaultValue);
 
@@ -57,4 +67,3 @@ export const AppProvider = (props: IProviderProps) => {
         </AppContext.Provider>
     );
 };
-

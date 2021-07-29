@@ -17,6 +17,11 @@
         height: 155px;
         width: 42px;
         border: none;
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 0.5rem;
 
         position: relative;
         margin-left: -6px;
@@ -28,9 +33,13 @@
         height: 93px;
         width: 23px;
         border: none;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 0.5rem;
 
         position: relative;
-
         margin-left: -23px;
         margin-right: -23px;
         z-index: 2;
