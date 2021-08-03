@@ -6,12 +6,17 @@ export interface IProviderProps {
 type AppContextState = {
     activeNotes: number[];
     activeChord: string[];
-    rootNote: string,
+    hintedChords: string[];
     keys: Array<{
         name: string,
         value: string,
         isWhite: boolean
-    }>
+    }>,
+
+    rootNote: string,
+    displayChords: string,
+    displayNotes: string,
+    isRootNoteMarked: boolean
 }
 
 type AppContextValue = {
@@ -24,7 +29,7 @@ const appCtxDefaultValue: AppContextValue = {
     state: {
         activeNotes: [],
         activeChord: [],
-        rootNote: 'c',
+        hintedChords: [],
         keys: [
             { name: 'c', value: 'c2', isWhite: true },
             { name: 'c#', value: 'cs2', isWhite: false },
@@ -51,7 +56,13 @@ const appCtxDefaultValue: AppContextValue = {
             { name: 'a', value: 'a3', isWhite: true },
             { name: 'a#', value: 'as3', isWhite: false },
             { name: 'b', value: 'b3', isWhite: true },
-        ]
+        ],
+
+        //options
+        rootNote: 'c',
+        displayChords: 'roman-chords', // other: 'chords', 'roman-chords'
+        displayNotes: 'all', // other: 'scale', 'root', 'chord', 'none'
+        isRootNoteMarked: false,
     },
     setState: state => { } // noop default callback
 };

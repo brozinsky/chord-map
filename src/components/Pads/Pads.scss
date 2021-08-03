@@ -127,11 +127,41 @@ $main-hover: #5f6468;
     color: #fff;
   }
 
+  &--hint{
+    transition:  0s;
+    // box-shadow: 5px 5px 5px rgba(217, 255, 0, 0.8);
+    box-shadow: 0px 0px 15px 5px #6eb9f6a1;
+    color: #6eb9f7;
+  }
+
   // &:hover{
   //   cursor: pointer;
   //   background: $main-hover;
   //   color: #fff;
   // }
+
+
+  &__name{
+
+    &-primary{
+      font-size: 2rem;
+
+    }
+
+    &-secondary{
+      text-transform: uppercase;
+    }
+
+    &-span{
+      text-transform: lowercase;
+      font-size: 1.2rem;;
+
+    }
+    &-line{
+      border: $dark-grey 1px solid;
+      margin: 0.3rem 0;
+    }
+  }
 
   &__arrow{
     // height: 3%;

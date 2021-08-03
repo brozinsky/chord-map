@@ -1,11 +1,10 @@
 import * as React from 'react';
 import './Panel.scss';
 import { AppContext } from '../../contexts/AppContext';
+import PanelSelect from './PanelSelect'
+import PanelCheckbox from './PanelCheckbox'
 
-const keys: string[] = ['c2', 'cs2', 'd2', 'ds2', 'e2', 'f2', 'fs2', 'g2', 'gs2', 'a2', 'as2', 'b2',
-    'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a3', 'as3', 'b3']
-
-const keysRoot = [{ name: 'c', value: 'c' },
+const keysRootOptions = [{ name: 'c', value: 'c' },
 { name: 'c#', value: 'cs' }, { name: 'd', value: 'd' },
 { name: 'd#', value: 'ds' }, { name: 'e', value: 'e' },
 { name: 'f', value: 'f' }, { name: 'f#', value: 'fs' },
@@ -13,17 +12,25 @@ const keysRoot = [{ name: 'c', value: 'c' },
 { name: 'a', value: 'a' }, { name: 'a#', value: 'as' },
 { name: 'b', value: 'b' }]
 
+const displayChordsOptions = [{ name: 'Roman/Chords', value: 'roman-chords' },
+{ name: 'Roman Numerals', value: 'roman' },
+{ name: 'Chords', value: 'chords' },
+]
+
+const displayNotesOptions = [{ name: 'All', value: 'all' },
+{ name: 'Scale', value: 'scale' },
+{ name: 'Chord', value: 'chord' },
+{ name: 'None', value: 'none' },]
+
+const keysRootName = 'Root'
+const displayChordsName = 'Chord symbols'
+const displayNotesName = 'Notes'
 
 export default function Panel() {
     const { state, setState } = React.useContext(AppContext);
+    const { rootNote, displayChords, displayNotes, isRootNoteMarked } = state
 
-    const [rootNote, setRootNote] = React.useState('c')
-
-    // const root = React.useRef<HTMLSelectElement>(null);
-
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        // setRootNote(event.target.value.trim())
-
+    const handleRootNoteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setState(prevState => {
             return {
                 ...prevState,
@@ -32,38 +39,53 @@ export default function Panel() {
         })
     }
 
-    return (
-        <div className="panel">
-            <form action="/action_page.php">
-                <label htmlFor="root">
-                    Root
-                    <select
-                        // ref={root}
-                        value={state.rootNote}
-                        onChange={handleChange}
-                        name="root">
-                        {keysRoot.map(({ value, name }) => {
-                            return <option value={value}>
-                                {name}
-                            </option>
-                        })}
-                    </select>
-                </label>
-            </form>
+    const handleChordSymbolChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setState(prevState => {
+            return {
+                ...prevState,
+                displayChords: event.target.value
+            }
+        })
+    }
 
-            {/* <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Root</InputLabel>
-                <NativeSelect
-                    className={classes.selectEmpty}
-                    id="demo-simple-select-filled"
-                    value={'cs'}
-                    onChange={handleChange}
-                >
-                    {keys.map((key) => {
-                        return <option value={key}>{key}</option>
-                    })}
-                </NativeSelect>
-            </FormControl> */}
+    const handleNotesDisplayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setState(prevState => {
+            return {
+                ...prevState,
+                displayNotes: event.target.value
+            }
+        })
+    }
+
+    const handleRootMarkChange = () => {
+        setState(prevState => {
+            return {
+                ...prevState,
+                isRootNoteMarked: !isRootNoteMarked
+            }
+        })
+    }
+
+    return (
+        <div className="panel-wrap">
+            <form className="panel">
+                <PanelSelect
+                    selectName={keysRootName}
+                    handleChange={handleRootNoteChange}
+                    options={keysRootOptions}
+                    value={rootNote} />
+                <PanelSelect handleChange={handleChordSymbolChange}
+                    selectName={displayChordsName}
+                    options={displayChordsOptions}
+                    value={displayChords} />
+                <PanelSelect handleChange={handleNotesDisplayChange}
+                    selectName={displayNotesName}
+                    options={displayNotesOptions}
+                    value={displayNotes} />
+                <PanelCheckbox handleChange={handleRootMarkChange}
+                    name="isRootNoteMarked"
+                    checked={isRootNoteMarked} />
+            </form>
         </div>
     )
 }
