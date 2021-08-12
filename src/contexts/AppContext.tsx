@@ -12,6 +12,7 @@ type AppContextState = {
         value: string,
         isWhite: boolean
     }>,
+    activeTab: number,
 
     rootNote: string,
     displayChords: string,
@@ -57,6 +58,7 @@ const appCtxDefaultValue: AppContextValue = {
             { name: 'a#', value: 'as3', isWhite: false },
             { name: 'b', value: 'b3', isWhite: true },
         ],
+        activeTab: 1,
 
         //options
         rootNote: 'c',

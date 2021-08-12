@@ -2,21 +2,47 @@ import * as React from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import useSound from 'use-sound';
 import allPianoSamples from '../../assets/allsamples.mp3'
+import { chordsRomanMajor } from '../../constants/chords';
+import { keyNotes } from '../../constants/notes';
 export interface IAppProps {
     name: string,
 }
 
-const chords: { name: string, notes: number[], nextChord: string[] }[] = [
-    { name: 'I', notes: [1, 5, 8], nextChord: ['ii', 'iii', 'IV', 'V', 'vi', 'vii'] },
-    { name: 'ii', notes: [3, 6, 10], nextChord: ['iii', 'V'] },
-    { name: 'iii', notes: [5, 8, 12], nextChord: ['IV', 'vi'] },
-    { name: 'IV', notes: [6, 10, 13], nextChord: ['I', 'ii', 'V'] },
-    { name: 'V', notes: [8, 12, 15], nextChord: ['I', 'iii', 'vi',] },
-    { name: 'vi', notes: [10, 13, 17], nextChord: ['ii', 'IV', 'vi'] },
-]
+// const chords: {
+//     name: string,
+//     notes: number[],
+//     nextChord: string[],
+//     suffixes: string[]
+// }[] = [
+//         {
+//             name: 'I', notes: [1, 5, 8],
+//             nextChord: ['ii', 'iii', 'IV', 'V', 'vi', 'vii'],
+//             suffixes: ['2', '6', 'M7', 'sus', 'M9']
+//         },
+//         {
+//             name: 'ii', notes: [3, 6, 10], nextChord: ['iii', 'V'],
+//             suffixes: ['m7', 'm9']
+//         },
+//         {
+//             name: 'iii', notes: [5, 8, 12], nextChord: ['IV', 'vi'],
+//             suffixes: ['7']
+//         },
+//         {
+//             name: 'IV', notes: [6, 10, 13], nextChord: ['I', 'ii', 'V'],
+//             suffixes: ['6', 'M7', 'm', 'm6']
+//         },
+//         {
+//             name: 'V', notes: [8, 12, 15], nextChord: ['I', 'iii', 'vi',],
+//             suffixes: ['7', '9', '11', 'sus', '13']
+//         },
+//         {
+//             name: 'vi', notes: [10, 13, 17], nextChord: ['ii', 'IV', 'vi'],
+//             suffixes: ['m7', 'm9']
+//         },
+//     ]
 
-const keys: string[] = ['c2', 'cs2', 'd2', 'ds2', 'e2', 'f2', 'fs2', 'g2', 'gs2', 'a2', 'as2', 'b2',
-    'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a3', 'as3', 'b3']
+// const keys: string[] = ['c2', 'cs2', 'd2', 'ds2', 'e2', 'f2', 'fs2', 'g2', 'gs2', 'a2', 'as2', 'b2',
+//     'c3', 'cs3', 'd3', 'ds3', 'e3', 'f3', 'fs3', 'g3', 'gs3', 'a3', 'as3', 'b3']
 
 const Pad = ({ name }: IAppProps) => {
     const [isActive, setIsActive] = React.useState<boolean>(false);
@@ -25,10 +51,10 @@ const Pad = ({ name }: IAppProps) => {
     const { rootNote, hintedChords, displayChords } = state
 
     //change array order based on root note
-    const rootIndex = keys.indexOf(rootNote + '2')
-    const keysRootFirst = keys.slice(rootIndex, keys.length)
+    const rootIndex = keyNotes.indexOf(rootNote + '2')
+    const keysRootFirst = keyNotes.slice(rootIndex, keyNotes.length)
     //find roman numeral and pair it to its chord counterpart based on chosen root note
-    const chordLetter = keysRootFirst[chords.findIndex(chord => chord.name === name)]
+    const chordLetter = keysRootFirst[chordsRomanMajor.findIndex(chord => chord.name === name)]
         .slice(0, -1)
         .replace("s", "#");
 
@@ -95,8 +121,8 @@ const Pad = ({ name }: IAppProps) => {
         setTimeout(() => {
             setIsActive(false)
         }, 500);
-        const chordNotes = chords.find(chord => chord.name === name)?.notes as number[]
-        const hintedChords = chords.find(chord => chord.name === name)?.nextChord as string[]
+        const chordNotes = chordsRomanMajor.find(chord => chord.name === name)?.notes as number[]
+        const hintedChords = chordsRomanMajor.find(chord => chord.name === name)?.nextChord as string[]
         setState(prevState => {
             return {
                 ...prevState,
@@ -124,6 +150,12 @@ const Pad = ({ name }: IAppProps) => {
                 ${isActive ? 'pad--active' : ''}
                 ${isNext ? 'pad--hint' : ''} `}>
                 <div className={`pad__name-primary`}>
+                    <div className={`pad__name-suffix-container`}>
+                        {chordsRomanMajor.find(chord => chord.name === name)?.suffixes
+                            .map((suffix, index) => {
+                                return <div key={index} className={`pad__name-suffix`}>{suffix}</div>
+                            })}
+                    </div>
                     {displayChords === 'chords'
                         ? null
                         : name}

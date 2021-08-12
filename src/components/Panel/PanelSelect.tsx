@@ -10,8 +10,8 @@ const PanelSelect = ({ handleChange, options, value, selectName }) => {
                 value={value}
                 onChange={handleChange}
                 name={selectName}>
-                {options.map(({ value, name }) => {
-                    return <option value={value}>
+                {options.map(({ value, name }, index) => {
+                    return <option value={value} key={index}>
                         {name}
                     </option>
                 })}
