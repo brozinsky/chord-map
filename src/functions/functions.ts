@@ -10,8 +10,8 @@ export const arrangeNotesByRoot = (rootNote: string) => {
     return notesRootFirst
 }
 
-export const createScale = (scaleName: string, rootNote: string) => {
-    const scaleObj = scales.find(scale => scale.name === scaleName)
+export const createScale = (scaleType: string, rootNote: string) => {
+    const scaleObj = scales.find(scale => scale.name === scaleType)
     if (notes.includes(rootNote) && scaleObj !== undefined) {
         const scaleNotes = scaleObj.notes
         const notesRootFirst = arrangeNotesByRoot(rootNote)
@@ -30,7 +30,7 @@ export const createChord = (chordSuffix: string, rootNote: string) => {
         const chordNotes = chordObj.notes
         const notesRootFirst = arrangeNotesByRoot(rootNote)
         const chord = chordNotes.map(i => notesRootFirst[i - 1])
-        return chord as string[]
+        return { notes: chord, suffix: chordSuffix }
     } else if (!notes.includes(rootNote)) {
         console.error(rootNoteError)
     } else if (chordObj === undefined) {
@@ -39,4 +39,7 @@ export const createChord = (chordSuffix: string, rootNote: string) => {
 }
 
 export const checkIsInScale = (scaleArr: string[], chordArr: string[]) =>
-    scaleArr.every(note => chordArr.includes(note));
+    chordArr.every(note => scaleArr.includes(note));
+
+// export const checkIsInScale = (scaleArr: string[], chordArr: string[]) =>
+//     scaleArr.every(note => chordArr.includes(note));

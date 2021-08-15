@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAA;EACF,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,KAAK;CAcf;;AAZI,AAAD,cAAS,CAAA;EACL,UAAU,EAAE,OAAO;EACnB,MAAM,EAAE,iBAAiB;EACzB,aAAa,EAAE,GAAG;CACrB;;AAEA,AAAD,WAAM,CAAA;EACF,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,aAAa,EAAE,IAAK;CACtB",
+    "sources": [
+        "../Panel/Panel.scss"
+    ],
+    "names": [],
+    "file": "Panel.css"
+}

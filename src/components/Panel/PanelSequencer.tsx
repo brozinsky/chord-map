@@ -1,14 +1,13 @@
 import * as React from 'react';
 import './Panel.scss';
 import { AppContext } from '../../contexts/AppContext';
-import PanelSelect from './PanelSelect'
-import { keysRootOptions } from '../../constants/panelOptions'
+import { keysRootOptions, scalesOptions } from '../../constants/panelOptions'
 
 const keysRootName = 'Scale'
 
 export default function PanelChordmap() {
     const { state, setState } = React.useContext(AppContext);
-    const { rootNote } = state
+    const { rootNote, scaleType } = state
 
     const handleRootNoteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setState(prevState => {
@@ -19,14 +18,44 @@ export default function PanelChordmap() {
         })
     }
 
+    const handleScaleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setState(prevState => {
+            return {
+                ...prevState,
+                scaleType: event.target.value
+            }
+        })
+    }
+
     return (
         <div className="panel-wrap">
             <form className="panel">
-                <PanelSelect
-                    selectName={keysRootName}
-                    handleChange={handleRootNoteChange}
-                    options={keysRootOptions}
-                    value={rootNote} />
+                <label className="panel__item"
+                    htmlFor={'Scale'}>
+                    Scale:
+                    <select
+                        className="panel__select"
+                        value={rootNote}
+                        onChange={handleRootNoteChange}
+                    >
+                        {keysRootOptions.map(({ value, name }, index) => {
+                            return <option value={value} key={index}>
+                                {name}
+                            </option>
+                        })}
+                    </select>
+                    <select
+                        className="panel__select"
+                        value={scaleType}
+                        onChange={handleScaleTypeChange}
+                    >
+                        {scalesOptions.map(({ name }, index) => {
+                            return <option value={name} key={index}>
+                                {name}
+                            </option>
+                        })}
+                    </select>
+                </label>
             </form>
         </div>
     )

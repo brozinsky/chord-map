@@ -3,6 +3,10 @@ export const chordVariations: {
     suffix: string
 }[] = [
         {
+            notes: [1, 5, 8],
+            suffix: 'maj',
+        },
+        {
             notes: [1, 4, 8],
             suffix: 'min',
         },
@@ -55,7 +59,7 @@ export const chordVariations: {
             suffix: 'm9',
         },
         {
-            notes: [1, 3, 5, 8],
+            notes: [1, 3, 4, 8],
             suffix: 'm2',
         },
         {

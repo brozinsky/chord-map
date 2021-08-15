@@ -1,0 +1,82 @@
+.keys {
+  margin: 1rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: space-between;
+      -ms-flex-align: space-between;
+          align-items: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  max-width: 633px;
+}
+
+.keys--active {
+  background: #6eb9f7 !important;
+}
+
+.keys__note {
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  line-height: 0.9rem;
+}
+
+.keys__note--off {
+  display: none;
+}
+
+.keys__note--root {
+  background: #6eb9f77c;
+}
+
+.keys__white {
+  background: #fff;
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  height: 155px;
+  width: 42px;
+  border: none;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 0.5rem;
+  position: relative;
+  margin-left: -6px;
+  margin-right: -6px;
+}
+
+.keys__black {
+  background: #000;
+  height: 93px;
+  width: 23px;
+  border: none;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  padding-bottom: 0.5rem;
+  position: relative;
+  margin-left: -23px;
+  margin-right: -23px;
+  z-index: 2;
+}
+/*# sourceMappingURL=Keyboard.css.map */

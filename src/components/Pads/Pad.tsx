@@ -56,13 +56,14 @@ const Pad = ({ name }: IAppProps) => {
     //find roman numeral and pair it to its chord counterpart based on chosen root note
     const chordLetter = keysRootFirst[chordsRomanMajor.findIndex(chord => chord.name === name)]
         .slice(0, -1)
-        .replace("s", "#");
+    // .replace("s", "#");
 
     let chordMinor: string = ''
     if (name === 'ii' || name === 'iii' || name === 'vi') {
         chordMinor = 'm'
     }
 
+    // add hint for next chord
     React.useEffect(() => {
         if (hintedChords.filter(chordName => chordName === name).length > 0) {
             setIsNext(true)

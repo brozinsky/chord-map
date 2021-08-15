@@ -13,8 +13,13 @@ type AppContextState = {
         isWhite: boolean
     }>,
     activeTab: number,
+    chordsInScale: Array<{
+        notes: string[],
+        suffix: string,
+    }>,
 
     rootNote: string,
+    scaleType: string,
     displayChords: string,
     displayNotes: string,
     isRootNoteMarked: boolean
@@ -59,11 +64,13 @@ const appCtxDefaultValue: AppContextValue = {
             { name: 'b', value: 'b3', isWhite: true },
         ],
         activeTab: 1,
+        chordsInScale: [],
 
         //options
-        rootNote: 'c',
-        displayChords: 'roman-chords', // other: 'chords', 'roman-chords'
-        displayNotes: 'all', // other: 'scale', 'root', 'chord', 'none'
+        rootNote: 'c', // 'c', 'cs', 'd', 'ds', 'e', 'f', 'fs', 'g', 'gs', 'a', 'as', 'b'
+        scaleType: 'major', // 'major', 'minor'...
+        displayChords: 'roman-chords', // 'roman-chords', 'chords', 'roman-chords'
+        displayNotes: 'all', // 'all', 'scale', 'root', 'chord', 'none'
         isRootNoteMarked: false,
     },
     setState: state => { } // noop default callback
