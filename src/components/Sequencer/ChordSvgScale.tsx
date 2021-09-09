@@ -63,8 +63,6 @@ const ChordSvgScale = ({ fill, suffix }) => {
 
     const fillColor = fillColorFn(fill[0])
 
-    console.log(fillColor)
-
     let searchArr = fillNotes
     fill.forEach((note: string) => {
         let searchedNote = searchArr.find(obj => obj.name === note)
@@ -101,7 +99,7 @@ const ChordSvgScale = ({ fill, suffix }) => {
 
         { id: 13, positionX: '70', positionY: '6', width: '4', height: '18', fill: fillNotes[13].fill },
         { id: 15, positionX: '79', positionY: '6', width: '4', height: '18', fill: fillNotes[15].fill },
-        { id: 18, positionX: '88', positionY: '6', width: '4', height: '18', fill: fillNotes[18].fill },
+        { id: 18, positionX: '97', positionY: '6', width: '4', height: '18', fill: fillNotes[18].fill },
         { id: 20, positionX: '106', positionY: '6', width: '4', height: '18', fill: fillNotes[20].fill },
         { id: 22, positionX: '115', positionY: '6', width: '4', height: '18', fill: fillNotes[22].fill },
     ]

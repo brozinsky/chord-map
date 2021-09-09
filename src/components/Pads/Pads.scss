@@ -1,200 +1,152 @@
-$dark-grey: #939AA0;
-$pad-grey: #F1F1F1;
-$main-color: #2591CD;
-$main-faded: #A6D0EB;
-$main-hover: #5f6468;
+@import "../../_variables.scss";
 
-.pads{
+.pads {
   display: flex;
   flex-direction: row;
   width: 240px;
   height: 530px;
   margin: 1rem auto;
 
-  &__row{
-    &-1{
+  &__row {
+    &-1 {
       width: 10%;
       height: 100%;
-      &-el-1{
+      &-el-1 {
         height: 50%;
       }
-      &-el-2{
+      &-el-2 {
         height: 25%;
       }
-      &-el-3{
+      &-el-3 {
         height: 25%;
       }
     }
 
-    &-2{
+    &-2 {
       width: 40%;
       height: 100%;
 
-      &-el-1{
+      &-el-1 {
         height: 11%;
       }
-      // &-el-2,
-      // &-el-4,
-      // &-el-6,
-      // &-el-8{
-      //   height: 20%;
-      // }
-
-      // &-el-3,
-      // &-el-5,
-      // &-el-7 {
-      //   height: 3%;
-      // }
     }
 
-
-    &-3{
+    &-3 {
       width: 10%;
       height: 100%;
 
-      &-el-1{
+      &-el-1 {
         height: 11%;
       }
 
-      &-el-2, &-el-4, &-el-6{
+      &-el-2,
+      &-el-4,
+      &-el-6 {
         height: 11.5%;
       }
-      &-el-3, &-el-5{
+      &-el-3,
+      &-el-5 {
         height: 11.5%;
       }
 
-      &-el-7{
+      &-el-7 {
         height: 31.5%;
       }
     }
 
-    &-4{
+    &-4 {
       width: 40%;
       height: 100%;
-      // &-el-1,
-      // &-el-3,
-      // &-el-5{
-      //   height: 20%;
-      // }
-      // &-el-2,
-      // &-el-4,
-      // &-el-6{
-      //   height: 3%;
-      // }
     }
   }
 
-  &__none{
+  &__none {
     background: transparent;
     opacity: 0;
   }
 }
 
-.pad{
-  width: 100%;
-  height: 20%;
-  background: $pad-grey;
-  border-radius: 5px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+.pad {
+  @include box(100%, 20%);
   color: $dark-grey;
+  background: $pad-grey;
   font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  transition: 0.2s;
-
-  border: none;
-  // padding: 12px 18px;
+  border-radius: 5px;
   font-size: 1.5rem;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  transition: 0.2s;
+  text-align: center;
+  border: none;
   cursor: pointer;
   outline: none;
-
   background-position: center;
-  transition:  0.4s;
+  transition: 0.4s;
 
-  // &--active{
-  //   background: $main-color !important;
-  //   color: #fff;
-  // }
-
-  &:active{
+  &:active {
     background-color: #6eb9f7;
     background-size: 100%;
-    transition:  0s;
+    transition: 0s;
     color: #fff;
   }
 
-  &--assist{
+  &--assist {
     background: $main-faded;
     color: #fff;
   }
 
-  &--hint{
-    transition:  0s;
-    // box-shadow: 5px 5px 5px rgba(217, 255, 0, 0.8);
+  &--hint {
+    transition: 0s;
     box-shadow: 0px 0px 15px 5px #6eb9f6a1;
     color: #6eb9f7;
   }
 
-  // &:hover{
-  //   cursor: pointer;
-  //   background: $main-hover;
-  //   color: #fff;
-  // }
-
-
-  &__name{
-
-    &-primary{
+  &__name {
+    &-primary {
       font-size: 2rem;
-
     }
 
-    &-secondary{
+    &-secondary {
       text-transform: uppercase;
     }
 
-    &-suffix{
+    &-suffix {
       font-size: 0.8rem;
 
-      &-container{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      &-container {
+        @include flex(row, space-between, flex-start);
       }
     }
 
-    &-span{
+    &-span {
       text-transform: lowercase;
-      font-size: 1.2rem;;
-
+      font-size: 1.2rem;
     }
-    &-line{
+    &-line {
       border: $dark-grey 1px solid;
       margin: 0.3rem 0;
     }
   }
 
-  &__arrow{
-    // height: 3%;
+  &__arrow {
     color: $dark-grey;
 
-    &--active{
+    &--active {
       color: $main-color !important;
     }
 
-    &-down{
-      text-align:center;
+    &-down {
+      text-align: center;
       transform: scale(0.9);
       font-size: 100%;
     }
-    &-left{
-      height: 12%;
+    &-left {
       color: $dark-grey;
+      height: 12%;
     }
-    &-right{
+    &-right {
+      color: $dark-grey;
       height: 12%;
       transform: rotate(270deg) translateY(30%);
-      color: $dark-grey;
-
     }
   }
 }

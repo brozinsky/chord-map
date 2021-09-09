@@ -1,51 +1,48 @@
-.tabs{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 633px;
-    margin: 0 auto;
+@import "../../../_variables.scss";
+
+.tabs {
+  @include flex(row, flex-start, center);
+  width: 633px;
+  margin: 0 auto;
+  padding-left: 0px;
+
+  &__item {
+    width: 115px;
+    color: #c9cdd1;
+    border: 1px solid #f0f0f0;
+    border-color: #dee2e6a9 #dee2e6a9 #dee2e6a9;
+    border-radius: 0.25rem 0.25rem 0 0;
+    font-weight: 400;
+    list-style-type: none;
     padding-left: 0px;
+    margin-bottom: -1px;
+    transition: 0.15s;
 
-    &__item{
-        width: 115px;
-        border: 1px solid #f0f0f0;
-        border-color: #dee2e6a9 #dee2e6a9 #dee2e6a9;
-        border-radius: .25rem .25rem 0 0;
-        font-weight: 400;
-        list-style-type: none;
-        padding-left: 0px;
-        margin-bottom: -1px;
-        color: #c9cdd1;
-        transition: 0.15s;
-
-        &:hover{
-            color: #a3a5a7;
-            border-color: #dee2e6 #dee2e6 #dee2e6a9;
-        }
-
-        &--active{
-            color: #646566;
-            border-color: #dee2e6 #dee2e6 #fff;
-
-            &:hover{
-                color: #434344;
-                border-color: #dee2e6 #dee2e6 #fff;
-            }
-        }
-
-        &-btn{
-            color: inherit;
-            border: none;
-            border-bottom: #fff 1px solid;
-            background: transparent;
-            padding: .5rem 1rem;
-        }
+    &:hover {
+      color: #a3a5a7;
+      border-color: #dee2e6 #dee2e6 #dee2e6a9;
     }
-    &__wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-bottom: 1px solid #dee2e6;
+
+    &--active {
+      color: #646566;
+      border-color: #dee2e6 #dee2e6 #fff;
+
+      &:hover {
+        color: #434344;
+        border-color: #dee2e6 #dee2e6 #fff;
+      }
     }
+
+    &-btn {
+      color: inherit;
+      border: none;
+      border-bottom: #fff 1px solid;
+      background: transparent;
+      padding: 0.5rem 1rem;
+    }
+  }
+  &__wrapper {
+    @include flex(column, center, center);
+    border-bottom: 1px solid #dee2e6;
+  }
 }

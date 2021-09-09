@@ -2,6 +2,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -15,14 +19,14 @@
 
 .tabs__item {
   width: 115px;
+  color: #c9cdd1;
   border: 1px solid #f0f0f0;
   border-color: #dee2e6a9 #dee2e6a9 #dee2e6a9;
-  border-radius: .25rem .25rem 0 0;
+  border-radius: 0.25rem 0.25rem 0 0;
   font-weight: 400;
   list-style-type: none;
   padding-left: 0px;
   margin-bottom: -1px;
-  color: #c9cdd1;
   -webkit-transition: 0.15s;
   transition: 0.15s;
 }
@@ -47,7 +51,7 @@
   border: none;
   border-bottom: #fff 1px solid;
   background: transparent;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .tabs__wrapper {

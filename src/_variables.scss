@@ -1,0 +1,17 @@
+$main-color: #2591CD;
+$main-faded: #A6D0EB;
+$main-hover: #5f6468;
+$dark-grey: #939aa0;
+$pad-grey: #f1f1f1;
+
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flex($direction, $justify: flex-start, $align: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

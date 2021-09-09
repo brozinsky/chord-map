@@ -1,19 +1,17 @@
-.panel{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 633px;
+@import "../../_variables.scss";
 
-    &__select{
-        background: #fdfdfd;
-        border: 1px solid #f0f0f0;
-        border-radius: 2px;
-    }
+.panel {
+  @include flex(row, space-between, center);
+  width: 633px;
 
-    &-wrap{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 1rem ;
-     }
+  &__select {
+    background: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+  }
+
+  &-wrap {
+    @include flex(row, center, center);
+    margin-bottom: 1rem;
+  }
 }
